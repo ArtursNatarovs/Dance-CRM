@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{%block content%}
+    <link rel="stylesheet" href="{{ url_for('static', filename='calendar.css')}}">
+
+  <div class="calendar isolate">
+
+    <header class="calendar_header">
+        <button class="secondary" style="align-self: flex-start; flex: 0 0 1">Today</button>
+        <div class="calendar__title" style="display: flex; justify-content: center; align-items: center">
+          <div class="icon secondary chevron_left">‹</div> <!--icon secondary chevron_left-->
+          <h1 id="header_h1" class="" style="flex: 1;"><span></span><strong>{{week[0].day}} {{months[week[0].month-1]}} – {{week[6].day}} {{months[week[6].month-1]}}</strong> {{today.year}}</h1>
+          <div class="icon secondary chevron_left">›</div> <!--icon secondary chevron_left-->
+        </div>
+        <div style="align-self: flex-start; flex: 0 0 1"></div>
+    </header>
+
+    <div class="outer">
+
+
+      <table class="calendar_table">
+        <thead class="">
+          <tr>
+            <th  class="headcol"></th>
+            {% for day in week %}
+              {% if day.weekday() == today.weekday() %}
+                <th class="header_day today">{{day.strftime("%A")[:3]}}, {{day.day}}</th>
+              {% else %}
+                <th class="header_day">{{day.strftime("%A")[:3]}}, {{day.day}}</th>
+              {% endif %}
+            {% endfor %}
+          </tr>
+        </thead>
+      </table>
+
+    <div class="wrap">
+      <table class="offset calendar_table">
+        <tbody class="">
+          {% for hour in hours %}
+            <tr>
+              <td class="headcol">{{hour}}:00</td>
+              {% for day in week %}
+
+                  {% if hour in records[day.weekday()] %}
+                    <td><div class="event {{records[day.weekday()][hour][0]}}"><input id="check" type="checkbox" class="checkbox" /><label for="check"></label> {{records[day.weekday()][hour][1]}}</div></td>
+                  {% else %}
+                    <td></td>
+                  {% endif %}
+
+
+              {% endfor %}
+            </tr>
+            <tr>
+              <td class="headcol"></td>
+              {% for day in week %}
+              {% if day.weekday()==1 and hour==7 %}
+                <td class="now"></td>
+              {% else %}
+              <td></td>
+              {% endif %}
+              {% endfor %}
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  </div>
+
+{% endblock %}

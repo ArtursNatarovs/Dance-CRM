@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{%block content%}
+
+
+<div class="container">
+  <form action="{{url_for('invoice01')}}" method="POST">
+  <div class="row justify-content-around">
+
+      <div class="col-4">
+        {% for user in users %}
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+              <input type="radio" name="userId" value="{{user.id}}" aria-label="Radio button for following text input">
+            </div>
+          </div>
+          <span class="input-group-text">{{user.name}} {{user.last_name}}</span>
+        </div>
+        {% endfor %}
+      </div>
+
+      <div class="col-4">
+        {% for salon in salons %}
+        <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text">
+            <input type="radio" name="salonId" value="{{salon.id}}" aria-label="Radio button for following text input">
+          </div>
+        </div>
+        <span class="input-group-text">{{salon.name}}</span>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <br>
+    <input type="submit" value="Send Invoice" class="btn btn-secondary btn-lg btn-block mx-auto" style="width:20%;">
+    </form>
+</div>
+
+
+
+
+
+{% endblock %}

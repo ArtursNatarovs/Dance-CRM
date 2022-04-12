@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+  <form method="POST">
+    {{form.hidden_tag()}}
+    {{form.email.label}}{{form.email(class="form-control")}}<br>
+    {{form.name.label}}{{form.name(class="form-control")}}<br>
+    {{form.last_name.label}}{{form.last_name(class="form-control")}}<br>
+    {{form.p_number.label}}{{form.p_number(class="form-control", value="something")}}<br>
+    {{form.line1.label}}{{form.line1(class="form-control")}}<br>
+    {{form.line2.label}}{{form.line2(class="form-control")}}<br>
+    {{form.postCode.label}}{{form.postCode(class="form-control")}}<br>
+    {{form.city.label}}{{form.city(class="form-control")}}<br>
+    {{form.submit(class="form-control")}}
+  </form>
+</div>
+{% endblock %}

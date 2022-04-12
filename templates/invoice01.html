@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+  <form action="{{url_for('invoice02')}}" method="POST">
+    <div class="row">
+      <div class="col-sm">
+        <label for="fullName">Tenants Name</label> <br>
+        <input class="form-control" type="text" name="fullName" value="{{user.name}} {{user.last_name}}"> <br>
+        <label for="">Tenants Addresse</label> <br>
+        <input class="form-control" type="text" name="line1" value="{{user.line1}}"> <br>
+        <input class="form-control" type="text" name="line2" value="{{user.line2}}"> <br>
+        <input class="form-control" type="text" name="city" value="{{user.city}}"> <br>
+        <input class="form-control" type="text" name="postcode" value="{{user.postCode}}"> <br>
+        <input class="form-control" type="text" name="email" value="{{user.email}}"> <br>
+      </div>
+      <div class="col-sm">
+        <br>
+        <input class="form-control" type="text" name="invoiceDate" value="{{date}}">
+      </div>
+      <div class="col-sm">
+        <label for="title">Salon</label> <br>
+        <input class="form-control" type="text" name="title" value="{{salon.name}}"> <br>
+        <label for="">Salon's Addresse</label> <br>
+        <input class="form-control" type="text" name="salonline1" value="{{salon.line1}}"> <br>
+        <input class="form-control" type="text" name="salonline2" value="{{salon.line2}}"> <br>
+        <input class="form-control" type="text" name="saloncity" value="{{salon.city}}"> <br>
+        <input class="form-control" type="text" name="salonpostcode" value="{{salon.postCode}}"> <br>
+      </div>
+    </div>
+    <div class="row input-group">
+        <label for=""></label>
+        <input class="form-control" type="text" name="item_1" placeholder="Invoice item">
+        <input class="form-control" type="text" name="description_1" placeholder="Description">
+        <input class="form-control" type="number" name="value_1" step="0.01" placeholder="value">
+        <input class="form-control" type="number" name="quantity_1" placeholder="quantity">
+    </div>
+     <br>
+    <div class="row input-group">
+        <label for=""></label>
+        <input class="form-control" type="text" name="item_2" placeholder="Invoice item">
+        <input class="form-control" type="text" name="description_2" placeholder="Description">
+        <input class="form-control" type="number" name="value_2" step="0.01" placeholder="value">
+        <input class="form-control" type="number" name="quantity_2" placeholder="quantity">
+    </div>
+     <br>
+    <div class="row input-group">
+        <label for=""></label>
+        <input class="form-control" type="text" name="item_3" placeholder="Invoice item">
+        <input class="form-control" type="text" name="description_3" placeholder="Description">
+        <input class="form-control" type="number" name="value_3" step="0.01" placeholder="value">
+        <input class="form-control" type="number" name="quantity_3" placeholder="quantity">
+    </div>
+     <br>
+    <div class="row input-group">
+        <label for=""></label>
+        <input class="form-control" type="text" name="item_4" placeholder="Invoice item">
+        <input class="form-control" type="text" name="description_4" placeholder="Description">
+        <input class="form-control" type="number" name="value_4" step="0.01" placeholder="value">
+        <input class="form-control" type="number" name="quantity_4" placeholder="quantity">
+    </div>
+     <br>
+    <div class="row input-group">
+        <label for=""></label>
+        <input class="form-control" type="text" name="item_5" placeholder="Invoice item">
+        <input class="form-control" type="text" name="description_5" placeholder="Description">
+        <input class="form-control" type="number" name="value_5" step="0.01" placeholder="value">
+        <input class="form-control" type="number" name="quantity_5" placeholder="quantity">
+    </div>
+    <br>
+    <input type="submit" value="Preview" class="btn btn-success float-right">
+  </form>
+</div>
+{% endblock %}

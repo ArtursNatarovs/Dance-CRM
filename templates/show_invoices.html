@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="container">
+    {% for item in invoices %}
+      {% if item.date!=None %}
+      <div class="card">
+        <div class="card-header">
+          Invoice {{item.id}}, {{item.date}}
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{item.from_to()[0]}} to {{item.from_to()[1]}}</h5>
+
+              <p class="card-text">{{item.text}}</p>
+
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
+      {% endif %}
+
+    {% endfor %}
+
+  </div>
+{% endblock %}

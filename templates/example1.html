@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Example 1</title>
+
+  </head>
+  <body style="position: relative; width: 21cm; height: 29.7cm; margin: 0 auto; color: #001028; background: #FFFFFF; font-family: Arial, sans-serif; font-size: 12px; font-family: Arial;">
+    <header class="clearfix" style="padding: 10px 0; margin-bottom: 30px;">
+      <div id="logo" style="text-align: center; margin-bottom: 10px;" >
+        <img style="height: : 90px;" src="https://i.postimg.cc/52Y46KGW/House-Of-Hair-Logo-Black.png">
+      </div>
+      <h1 style="border-top: 1px solid  #5D6975; border-bottom: 1px solid  #5D6975; color: #5D6975; font-size: 2.4em; line-height: 1.4em; font-weight: normal; text-align: center; margin: 0 0 20px 0;  background: url(dimension.png);" >INVOICE {{invoiceId}}</h1>
+      <div id="company" class="clearfix" style="float: right; text-align: right;" >
+        <div style="white-space: nowrap;" >{{salon.name}}</div>
+        <div style="white-space: nowrap;">{{salon.line1}} {{salon.city}},<br /> {{salon.postCode}}</div>
+        <div style="white-space: nowrap;">{{salon.p_number}}</div>
+        <div style="white-space: nowrap;"><a href="mailto:{{salon.email}}" style="color: #5D6975; text-decoration: underline;" >{{salon.email}}</a></div>
+      </div>
+      <div id="project" style="float: left;" >
+
+        <div style="white-space: nowrap;"><span style="color: #5D6975; text-align: right; width: 52px; margin-right: 10px; display: inline-block; font-size: 0.8em;">CLIENT</span>{{user.name}} {{user.last_name}}</div>
+        <div style="white-space: nowrap;"><span style="color: #5D6975; text-align: right; width: 52px; margin-right: 10px; display: inline-block; font-size: 0.8em;">ADDRESS</span> {{user.line1}}, {{user.line2}}, {{user.city}}</div>
+        <div style="white-space: nowrap;"><span style="color: #5D6975; text-align: right; width: 52px; margin-right: 10px; display: inline-block; font-size: 0.8em;">POSTCODE</span> {{user.postCode}}</div>
+        <div style="white-space: nowrap;"><span style="color: #5D6975; text-align: right; width: 52px; margin-right: 10px; display: inline-block; font-size: 0.8em;">EMAIL</span> <a href="mailto:john@example.com" style="color: #5D6975; text-decoration: underline;">{{user.email}}</a></div>
+        <div style="white-space: nowrap;"><span style="color: #5D6975; text-align: right; width: 52px; margin-right: 10px; display: inline-block; font-size: 0.8em;">DATE</span>{{date}}</div>
+
+      </div>
+    </header>
+    <main>
+      <table style="width: 100%; border-collapse: collapse; border-spacing: 0; margin-bottom: 20px;">
+        <thead>
+          <tr>
+            <th class="service" style="padding: 5px 20px; color: #5D6975; border-bottom: 1px solid #C1CED9; white-space: nowrap; font-weight: normal; text-align: center;" >SERVICE</th>
+            <th class="desc" style="padding: 5px 20px; color: #5D6975; border-bottom: 1px solid #C1CED9; white-space: nowrap; font-weight: normal; text-align: center;">DESCRIPTION</th>
+            <th style="padding: 5px 20px; color: #5D6975; border-bottom: 1px solid #C1CED9; white-space: nowrap; font-weight: normal; text-align: center;">PRICE</th>
+            <th style="padding: 5px 20px; color: #5D6975; border-bottom: 1px solid #C1CED9; white-space: nowrap; font-weight: normal; text-align: center;">QTY</th>
+            <th style="padding: 5px 20px; color: #5D6975; border-bottom: 1px solid #C1CED9; white-space: nowrap; font-weight: normal; text-align: center;">TOTAL</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for position in serviceList %}
+          <tr>
+            <td class="service" style="vertical-align: top; text-align: left;text-align: center; padding: 20px; text-align: right;" >{{position[0]}}</td>
+            <td class="desc" style="vertical-align: top; text-align: left; padding: 20px; text-align: right;">{{position[2]}}</td>
+            <td class="unit" style="font-size: 1.2em; padding: 20px; text-align: right;">£{{position[1]}}</td>
+            <td class="qty" style="font-size: 1.2em; padding: 20px; text-align: right;">{{position[3]}}</td>
+            <td class="total" style="font-size: 1.2em; padding: 20px; text-align: right;">£{{position[4]}}</td>
+          </tr>
+          {% endfor %}
+
+          <!--<tr>
+            <td colspan="4" style="padding: 20px; text-align: right;">SUBTOTAL</td>
+            <td class="total" style="font-size: 1.2em; padding: 20px; text-align: right;">$5,200.00</td>
+          </tr>
+          <tr>
+            <td colspan="4" style="padding: 20px; text-align: right;">TAX 25%</td>
+            <td class="total" style="font-size: 1.2em; padding: 20px; text-align: right;" >$1,300.00</td>
+          </tr>-->
+          <tr>
+            <td colspan="4" class="grand total" style="padding: 20px; text-align: right;" >GRAND TOTAL</td>
+            <td class="grand total" style="border-top: 1px solid #5D6975; font-size: 1.2em; padding: 20px; text-align: right;" >£{{total}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div id="notices">
+        <div>NOTICE:</div>
+        <div class="notice" style="color: #5D6975; font-size: 1.2em;" >For further information please contact 2J-Art Ltd. 02073752083.</div>
+      </div>
+    </main>
+    <footer style="color: #5D6975; width: 100%; height: 30px; position: absolute; bottom: 0; border-top: 1px solid #C1CED9; padding: 8px 0; text-align: center;" >
+      Invoice was created on a computer and is valid without the signature and seal.
+    </footer>
+
+  </body>
+</html>
