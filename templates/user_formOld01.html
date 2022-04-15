@@ -2,19 +2,31 @@
 {% block content %}
 <div class="container">
   <div class="d-flex flex-column flex-lg-row h-lg-full bg-surface-primary border-bottom">
-
+  <!--<form method="POST">
+    {{form.hidden_tag()}}
+    <label class="form-control" for="#">Tenants ID: {{parent.id}}</label> <br>
+    {{form.email.label}}{{form.email(class="form-control", value=parent.email)}}<br>
+    {{form.name.label}}{{form.name(class="form-control", value=parent.name)}}<br>
+    {{form.last_name.label}}{{form.last_name(class="form-control", value=parent.last_name)}}<br>
+    {{form.p_number.label}}{{form.p_number(class="form-control", value=parent.p_number)}}<br>
+    {{form.line1.label}}{{form.line1(class="form-control", value=parent.line1)}}<br>
+    {{form.line2.label}}{{form.line2(class="form-control", value=parent.line2)}}<br>
+    {{form.postCode.label}}{{form.postCode(class="form-control", value=parent.postCode)}}<br>
+    {{form.city.label}}{{form.city(class="form-control", value=parent.city)}}<br>
+    {{form.submit(class="form-control")}}
+  </form>-->
   <form action="{{url_for('update_tenant02')}}" method="POST">
     <div class="row">
       <div class="col-sm">
-        <label for="#">Parent ID: {{parent.id}}</label> <br>
-
-          <label for="">Parent Name</label> <br>
-          <div class="input-group-prepend">
+        <label for="#">Tenants ID: {{parent.id}}</label> <br>
+        <div class="input-group-prepend">
+          <label for="fullName">Tenants Name</label> <br>
+          <span class="input-group-text" id="inputGroupFileAddon01">Tenants Name</span>
           <input class="form-control" type="text" name="firstName" value="{{parent.name}}">
           <input class="form-control" type="text" name="lastName" value="{{parent.last_name}}">
-          </div>
+        </div>
          <br>
-        <label for="">Parent Addresse </label> <br>
+        <label for="">Tenants Addresse </label> <br>
         <input class="form-control" type="text" name="line1" value="{{parent.line1}}"> <br>
         <input class="form-control" type="text" name="line2" value="{{parent.line2}}"> <br>
         <input class="form-control" type="text" name="city" value="{{parent.city}}"> <br>
@@ -23,7 +35,7 @@
         <input class="form-control" type="text" name="email" value="{{parent.email}}"> <br>
       </div>
     </div>
-    <button type="button" class="btn btn-success float-right" name="button">Add Children</button>
+
     <input type="submit" value="update" class="btn btn-success float-right">
   </form>
   <div class="col-sm">
@@ -31,14 +43,14 @@
     <div class="card" style="width: 18rem;">
       <div class="card-body">
         <h5 class="card-title">{{child.name}}</h5>
-        <h6 class="card-subtitle mb-2 text-muted">{{child.dob.date()}}</h6>
+        <h6 class="card-subtitle mb-2 text-muted">{{child.dob}}</h6>
         <ul>
           {% for class in child.timesTable %}
             <li>{{class.class_name}}</li>
           {% endfor %}
         </ul>
         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <a href="{{url_for('student_page', stud_id=child.id)}}" class="card-link">Student page</a>
+        <a href="#" class="card-link">Card link</a>
         <a href="#" class="card-link">Another link</a>
       </div>
     </div>

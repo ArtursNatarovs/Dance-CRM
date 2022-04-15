@@ -161,8 +161,8 @@ def student_page(stud_id):
     student = Students.query.filter_by(id=stud_id).first()
     return render_template('student_page.html', student=student)
 
-@app.route('/add_new_tenant', methods=['GET','POST'])
-def add_new_tenant():
+@app.route('/add_new_parent', methods=['GET','POST'])
+def add_new_parent():
     form = DataForm()
     if form.validate_on_submit():
         user = User(name=form.name.data,
@@ -177,14 +177,20 @@ def add_new_tenant():
         db.session.commit()
         return redirect((url_for('tenants')))
 
-    return render_template('add_new_tenant.html', form=form)
+    return render_template('add_new_parent.html', form=form)
 
 
-@app.route('/update_tenant', methods=['GET','POST'])
-def update_tenant():
+@app.route('/parent_page/<pare_id>', methods=['GET','POST'])
+def parent_page(pare_id):
     form=DataForm()
-    userId = int(request.form['userId'])
-    parent=Parents.query.filter_by(id=userId).first()
+
+    if pare_id:
+        request_id=pare_id
+    else:
+        request_id = int(request.form['userId'])
+
+
+    parent=Parents.query.filter_by(id=request_id).first()
     children = parent.children
     if form.validate_on_submit():
         user.name=form.name.data

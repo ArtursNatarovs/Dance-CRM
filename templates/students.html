@@ -23,17 +23,16 @@
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
-      <a class="btn btn-outline-success" href="{{url_for('add_new_tenant')}}">New</a>
+      <a class="btn btn-outline-success" href="{{url_for('add_new_parent')}}">New</a>
     </div>
 </nav>
-  <form action="#" method="POST">
-  <div class="row justify-content-around">
+  <!--<form action="#" method="POST">-->
+
 
     <div class="list-group">
       {% for student in students %}
       <a href="{{url_for('student_page', stud_id=student.id)}}" class="list-group-item">{{student.name}} {{student.last_name}}</a>
       {% endfor %}
-
     </div>
 
 
@@ -42,7 +41,7 @@
 
 
 
-      <div class="col-4">
+      <!--<div class="col-4">
         {% for student in students %}
         <div class="input-group">
           <div class="input-group-prepend">
@@ -53,10 +52,10 @@
           <span class="input-group-text">{{student.name}} {{student.last_name}}</span>
         </div>
         {% endfor %}
-      </div>
-    </div>
-    <br>
+      </div>-->
+
+    <!--<br>
     <input type="submit" value="Update" class="btn btn-secondary btn-lg btn-block mx-auto" style="width:20%;">
-    </form>
+    </form>-->
 </div>
 {% endblock %}
