@@ -1,6 +1,9 @@
-######################## Just trying out GIT ############################
-new line to invoicer
-# invoicer
-Simple invoice sending app
-Python app to send and track invoices
-Storesclients Data and invoice Data in SQLite database
+Ballet-CRM
+
+CRM app to monitor and schedule children in dance studious.
+Keeps records of parents, children, classes, groups. Provides calendar with schedulet classes
+
+will keep track of invoices sent to parents and send invoices with one click
+using flask as UI, SQLite for DB, Python for backend, Bootstrap css library
+
+
