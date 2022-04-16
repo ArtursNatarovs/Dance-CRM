@@ -8,7 +8,7 @@ import json
 from flask_wtf import FlaskForm
 from wtforms import (StringField, BooleanField, DateTimeField,
                      RadioField,SelectField,TextField,
-                     TextAreaField,SubmitField)
+                     TextAreaField,SubmitField,IntegerField,DecimalField)
 from wtforms.validators import DataRequired
 
 app = Flask(__name__)
@@ -42,6 +42,12 @@ class DataForm(FlaskForm):
     line2 = StringField('Address line2',validators=[DataRequired()])
     postCode = StringField('Post Code',validators=[DataRequired()])
     city = StringField('City',validators=[DataRequired()])
+    submit = SubmitField('Submit')
+
+class ClassForm(FlaskForm):
+    class_name = StringField('Class Name',validators=[DataRequired()])
+    duration = IntegerField('Duration',validators=[DataRequired()])
+    price = DecimalField('Price',validators=[DataRequired()])
     submit = SubmitField('Submit')
 
 
@@ -89,6 +95,9 @@ class Schedule(db.Model):
 
     def get_group(self):
         return Groups.query.filter_by(id=self.group_id).first()
+
+    def get_student(self):
+        return Students.query.filter_by(id=self.student_id).first()
 
 class Groups(db.Model):
     id = db.Column(db.Integer,primary_key=True)
@@ -155,6 +164,16 @@ def parents():
 def students():
     return render_template('students.html', students=Students.query.all())
 
+
+@app.route('/schedule')
+def schedule():
+    weekdays={1:"Monday",2:"Tuesday",3:"Wednsday",4:"Thursday",5:"Friday",6:"Saturday",7:"Sunday"}
+    return render_template('schedule.html', schedule=Schedule.query.all(), weekdays=weekdays)
+
+@app.route('/classes')
+def classes():
+    return render_template('classes.html', classes=Classes.query.all())
+
 #@app.route('/<variable>/remove', methods=['GET', 'POST'])
 @app.route('/student_page/<stud_id>', methods=['GET', 'POST'])
 def student_page(stud_id):
@@ -206,6 +225,23 @@ def parent_page(pare_id):
         return redirect((url_for('tenants')))
     return render_template('user_form.html',form=form, parent=parent, children=children)
 
+
+@app.route('/class_page/<clas_id>')
+def class_page(clas_id):
+    pass
+
+@app.route('/add_new_class', methods=['GET','POST'])
+def add_new_class():
+    form = ClassForm()
+    if form.validate_on_submit():
+        new_class = Classes(class_name=form.class_name.data,
+                            duration=form.duration.data,
+                            price=form.price.data)
+        db.session.add(new_class)
+        db.session.commit()
+        return redirect((url_for('classes')))
+
+    return render_template('add_new_class.html', form=form)
 
 @app.route('/update_tenant02', methods=['POST'])
 def update_tenant02():
