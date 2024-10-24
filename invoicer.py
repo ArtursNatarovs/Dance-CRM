@@ -19,15 +19,15 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///'+os.path.join(basedir,'data.sqlite')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config.update(DEBUG=True,
-                    MAIL_SERVER='smtp.123-reg.co.uk',
+                    MAIL_SERVER='your smtp server',
                     MAIL_PORT=465,
                     MAIL_USE_SSL=True,
                     MAIL_USE_TLS = False,
                     MAIL_SUPPRESS_SEND = False,
                     MAIL_DEBUG = True,
                     TESTING = False,
-                    MAIL_USERNAME='info@hofhsalon.co.uk',
-                    MAIL_PASSWORD='Qw!2er34')
+                    MAIL_USERNAME='your_email',
+                    MAIL_PASSWORD='your_password')
 
 db = SQLAlchemy(app)
 mail = Mail(app)
@@ -301,9 +301,9 @@ def invoice02():
 def send_mail():
     try:
         msg = Message('Invoice form 2J-ART Ltd.',
-        sender='info@hofhsalon.co.uk',
+        sender='sender_email',
         recipients=[User.query.filter_by(id=int(session['userId'])).first().email])
-        msg.add_recipient("artursnatarovs@gmail.com")
+        msg.add_recipient("recipient_email")
         msg.body = "If you can't read this email please contact us."
         msg.html = render_template('example1.html',
                                     invoiceData=session['invoiceData'],
@@ -315,7 +315,7 @@ def send_mail():
                                     total=session['total'])
         mail.send(msg)
         msg.subject='COPY of Invoice form 2J-ART Ltd.'
-        msg.recipients=['info@hofhsalon.co.uk']
+        msg.recipients=['recipients_email']
         mail.send(msg)
     except Exception as e:
         return str(e)
